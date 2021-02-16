@@ -131,7 +131,7 @@ nav .menu li,
   align-items: center;
   background-color: white;
   margin: auto;
-  width: 80%;
+  width: 50%;
   min-width: 530px;
   border-radius: 50px;
   list-style: none;
@@ -141,6 +141,7 @@ nav .menu li,
   border-radius: 50px;
   width: 100%;
   padding: 10px 10px;
+  /* border-left: 1px solid black; */
 }
 .search li:hover {
   background-color: whitesmoke;
@@ -180,12 +181,16 @@ nav .menu li,
   width: 200px;
   position: absolute;
   /* float: right; */
-  display: inline-block;
+  /* display: inline-block; */
   top: 140px;
   right: 80px;
   border-radius: 10px;
+  display: none;
 
   /* margin: auto; */
+}
+.login__pop-up.active {
+  display: block;
 }
 .login__pop-up ul {
   padding: 5px 0;
