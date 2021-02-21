@@ -114,6 +114,7 @@ nextCalenderBtn.addEventListener('click', () => {
     classNameCnt = 1;
     calendar1 = new Calendar(thisYear, thisMonth,classNameCnt);
     calendar1.displayYearMonth();
+    displayReservation();
 })
 
 
@@ -123,23 +124,36 @@ const calendarBox = document.querySelector('.calendar');
 
 calendarBtn.addEventListener('click', () => {
     calendarBox.classList.toggle('active');
+    displayReservation();
 })
 
 
 
 
-
-const dataNum = document.querySelectorAll('.dataNumBox');
-const inputDataNum = document.querySelector('.search-sub__desc');
-
-const parents = dataNum.parentNode;
-    for(const singleNum of dataNum) {
-        let tableName = singleNum.parentNode.parentNode.parentNode;
-        let one = tableName.previousSibling.previousSibling.firstChild.nextSibling.innerText;
+function displayReservation() {
+    const dataNum = document.querySelectorAll('.dataNumBox');
+    const inputDataNum = document.querySelector('.search-sub__desc');
     
-        singleNum.addEventListener('click', () => {
-            singleNum.classList.toggle('active');
-            inputDataNum.innerHTML = `${one}${singleNum.innerText}일`;
-        })
-        
-    }
+    const parents = dataNum.parentNode;
+    let inputRangeCnt = 0;
+        for(const singleNum of dataNum) {
+            let tableName = singleNum.parentNode.parentNode.parentNode;
+            let one = tableName.previousSibling.previousSibling.firstChild.nextSibling.innerText;
+            console.log(one.split(''));
+            singleNum.addEventListener('click', () => {
+                // if(singleNum.className === 'dataNumBox active') {
+                //     singleNum.classList.toggle('active');
+                //     inputDataNum.innerHTML += `${one}${singleNum.innerText}일`;
+                // }
+                inputRangeCnt++;
+                console.log(inputRangeCnt)
+                singleNum.classList.toggle('active');
+                if(inputRangeCnt %2 ==0) {
+                    return inputDataNum.innerHTML += ` - ${one}${singleNum.innerText}일`;
+                    
+                }
+                inputDataNum.innerHTML = `${one}${singleNum.innerText}일`;
+            })
+            
+        }
+}
